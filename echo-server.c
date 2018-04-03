@@ -6,10 +6,9 @@
 #include <unistd.h>
 #include <stdbool.h>
 
-void do_echo(int comm, char str[25]);
-
 int  main(){
 	char str[25];
+	char to_echo[25];
 	int listener;
 	int comm;
 	struct sockaddr_in servaddr;
@@ -28,12 +27,9 @@ int  main(){
 		comm = accept(listener, (struct sockaddr *) NULL, NULL);
 		bzero(str, 25);
 		read(comm, str, 25);
-		do_echo(comm, str);
+		strcpy(to_echo, str);
+		printf("Echo: %s\n", to_echo);
+		write(comm, str, strlen(str)+1);
 	}
-}
-
-void do_echo(int comm, char str[25]){
-         printf("Echo: %s\n", str);
-         write(comm, str, strlen(str)+1);
 }
 
