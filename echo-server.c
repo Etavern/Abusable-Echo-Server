@@ -6,9 +6,11 @@
 #include <unistd.h>
 #include <stdbool.h>
 
+void do_echo(char str[100], int comm);
+void print_explicit();
+
 int  main(){
-	char str[25];
-	char to_echo[25];
+	char str[100];
 	int listener;
 	int comm;
 	struct sockaddr_in servaddr;
@@ -25,11 +27,20 @@ int  main(){
 
 	while(true){
 		comm = accept(listener, (struct sockaddr *) NULL, NULL);
-		bzero(str, 25);
-		read(comm, str, 25);
-		strcpy(to_echo, str);
-		printf("Echo: %s\n", to_echo);
-		write(comm, str, strlen(str)+1);
+		bzero(str, 100);
+		read(comm, str, 100);
+		do_echo(str, comm);
 	}
+}
+
+void do_echo(char str[100], int comm){	
+	char to_echo[25];
+	strcpy(to_echo, str);
+	printf("Echo: %s\n", to_echo);
+	write(comm, str, strlen(str)+1);
+}
+
+void print_explicit(){
+	puts("OH NO, MY EXPLICIT IS EXPOSED!");
 }
 
