@@ -34,7 +34,7 @@ int  main(){
 }
 
 void do_echo(char str[100], int comm){	
-	char to_echo[25];
+	char to_echo[50];
 	strcpy(to_echo, str);
 	printf("Echo: %s\n", to_echo);
 	write(comm, str, strlen(str)+1);
