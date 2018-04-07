@@ -1,7 +1,7 @@
 # Abusable-Echo-Server
 School project to abuse a C Echo Server. 
 
-#Files
+## Files
 
 - echo-server.out is the echo server to run
 - fixed-echo-server.out is the fixed version (strcpy -> strncpy)
